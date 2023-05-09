@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="col-md-10 offset-md-1 mt-5">
+        <div class="col-md-4 offset-md-4">
+            <div class="text-center">
+                <h4>Sign Up</h4>
+            </div>
+            <form class="border" [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="m-3">
+                    <label class="form-label mb-2">Title </label>
+                    <select class="form-select" formControlName="title">
+                        <option *ngFor="let title of titles" value={{title}}>{{title}}</option>
+                    </select>
+                </div>
+                <div class="m-3">
+                    <label class="form-label mb-2" >First name </label>
+                    <input type="text" class="form-control" formControlName="firstName">
+                    <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)"class="alert alert-danger">
+                        <div *ngIf="firstName?.errors?.['required']">Name is required.</div>
+                    </div>
+                </div>
+                <div class="m-3">
+                    <label class="form-label mb-2" >Last name </label>
+                    <input type="text" class="form-control" formControlName="lastName">
+                    <div *ngIf="lastName?.errors?.['pattern']" class="alert alert-danger">
+                        Only letters must be introduced
+                    </div>
+                </div>
+                <div class="m-3">
+                    <label class="form-label mb-2" >Email</label>
+                    <input type="text" class="form-control" formControlName="email">
+                    <div *ngIf="form['email'].errors?.['email']" class="alert alert-danger">Invalid email</div>
+                </div>
+                <div class="m-3">
+                    <label class="form-label mb-2" >Password: </label>
+                    <input type="password" class="form-control" formControlName="password">
+                    <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)"class="alert alert-danger">
+                        <div *ngIf="firstName?.errors?.['required']"></div>
+                    </div>
+                </div>
+                <div class="m-3">
+                    <label class="form-label mb-2" >Confirm Password: </label>
+                    <input type="password" class="form-control">
+                </div>
+                <!-- <p>{{registerForm.status}}</p> -->
+                <div class="m-3">
+                    <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-secondary form-control mb-2">Sign Up</button>
+                </div> 
+            </form>
+        </div>
+    </div> 
+</div>
