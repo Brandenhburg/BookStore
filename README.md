@@ -1,10 +1,21 @@
 # BookStore
 
+Hey!
+
+This Angular WebApp is under development and is intended to consume StoreApp API (https://github.com/Brandenhburg/StoreApp) which will also be redesigned and updated to the latest .NET LTS version.
+
+As I am in the process of learning the Angular framework and its capabilities, the structure of the project and its style may change.
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+
+https://hub.docker.com/u/brandehburg
+
 
 ## Code scaffolding
 
