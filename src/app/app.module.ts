@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -13,8 +12,13 @@ import { NotFoundComponent } from './notfound/notfound.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { LoginComponent } from './header/login/login.component';
-import { SignUpComponent } from './header/signup/signup.component';
+import { RegisterComponent } from './header/register/register.component';
+import { WriteComponent } from './write/write.component';
 import { routing } from './app.routing';
+import { LibraryComponent } from './library/library.component';
+import { BookComponent } from './library/book/book.component';
+import { AuthService } from './_services/auth.service';
+import { AccountComponent } from './account/account.component';
 
 
 
@@ -25,8 +29,12 @@ import { routing } from './app.routing';
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    SignUpComponent,
+    RegisterComponent,
     HomeComponent,
+    AccountComponent,
+    LibraryComponent,
+    BookComponent,
+    WriteComponent,
     AboutComponent,
     ContactsComponent,
 
@@ -40,7 +48,7 @@ import { routing } from './app.routing';
     ReactiveFormsModule,
     routing
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

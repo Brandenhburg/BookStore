@@ -1,45 +1,49 @@
-import { HttpClient, HttpStatusCode, JsonpInterceptor } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Observable, tap } from "rxjs";
+import { Router } from "@angular/router";
 
 
-import { AuthService } from "src/app/services/auth.service";
+import { AuthService } from "src/app/_services/auth.service";
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    providers: [AuthService]
 })
 export class LoginComponent implements OnInit{
-
-
-    httpResponse?: string
+   
+    @Output() submitForm = new EventEmitter();
+    @Output() cancelLogin = new EventEmitter();
 
     loginForm = new FormGroup({
-        email: new FormControl(''),
-        password: new FormControl('')
+        email: new FormControl('',[Validators.required]),
+        password: new FormControl('',[Validators.required])
     })
 
-    constructor(private authService: AuthService, private fb: FormBuilder){}
+    constructor(private authService: AuthService, private router: Router, private fb: FormBuilder){}
 
     ngOnInit(): void {
-        this.loginForm = this.fb.group({
-            email: new FormControl('',[Validators.required]),
-            password: new FormControl('', [Validators.required])
-        })
+        
     }
 
     login(){
-        let result = this.authService.logIn(JSON.stringify(this.loginForm.value, null, 2))
-            .subscribe({
-                next(value) {
-                    console.log(value.body);
-                },
-                error(){
-
-                }
-            });
-            
+        this.authService.logIn(JSON.stringify(this.loginForm.value, null, 2)).subscribe(response => {
+            console.log(response);
+            this.router.navigateByUrl("");
+        })
     }
+
+    cancel() {
+        this.cancelLogin.emit(false);
+        this.router.navigateByUrl("");
+    }
+
+    get email()  {
+        return this.loginForm.get('email');
+    }
+
+    get password() {
+        return this.loginForm.get('password');
+    }
+
+
 }

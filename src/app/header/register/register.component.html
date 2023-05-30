@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="col-md-10 offset-md-1 mt-5">
+        <div class="col-md-4 offset-md-4">
+            <div class="text-center">
+                <h4>Sign Up</h4>
+            </div>
+            <form class="border" [formGroup]="signUpForm" (submit)="onSubmit()" autocomplete="off">
+                <div class="m-3">
+                    <label class="form-label mb-2">Title</label>
+                    <select [class.is-invalid]="title?.errors && title?.touched" class="form-select" formControlName="title">
+                        <option *ngFor="let title of titles" value={{title}}>{{title}}</option>
+                    </select>
+                    <div class="invalid-feedback">Select title</div>
+                </div>
+                <div class="m-3">
+                    <input [class.is-invalid]='signUpForm.get("firstName")?.errors && signUpForm.get("firstName")?.touched' type="text" class="form-control" formControlName="firstName" placeholder="First name">
+                    <div class="invalid-feedback">Please enter your Name</div>
+                </div>
+                <div class="m-3">
+                    <input [class.is-invalid]='lastName?.errors && lastName?.touched' type="text" class="form-control" formControlName="lastName" placeholder="Last name">
+                    <div class="invalid-feedback">Please enter your last name</div>
+                    <div *ngIf="lastName?.errors?.['pattern']" class="invalid-feedback">Only letters are allowed</div>
+                </div>
+                <div class="m-3">
+                    <input [class.is-invalid]="email?.errors && email?.touched" type="email" class="form-control" formControlName="email" placeholder="Email">
+                    <div class="invalid-feedback">Please enter your email</div>
+                    <div *ngIf="form['email'].errors?.['email']" class="invalid-feedback">Invalid email</div>
+                </div>
+                <div class="m-3">
+                    <input [class.is-invalid]="password?.errors && password?.touched" type="password" class="form-control" formControlName="password" placeholder="Password" minlength="6" maxlength="40">
+                    <p><small><i>Password required length: 6-40 characters</i></small></p>
+                    <div class="invalid-feedback" *ngIf="password?.errors?.['passwordStrength']">
+                        Your password must contain at least one lower case, upper case, numeric and special character.
+                    </div>
+                    <div class="invalid-feedback">Please provide your password</div>
+                </div>
+                <div class="m-3">
+                    <input [class.is-invalid]="confirmPassword?.errors && confirmPassword?.touched" type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password">
+                    <div class="invalid-feedback">Please confirm your password</div>
+                    <div *ngIf="signUpForm.errors?.['passwordMismatch']" class="invalid-feedback">
+                        Paswords do not match.
+                    </div>
+                </div>
+                <div class="m-3">
+                    <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-secondary form-control mb-2">Register</button>
+                </div> 
+                <div class="m-3">
+                    <button type="button" class="btn btn-default form-control" (click)="cancel()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div> 
+</div>

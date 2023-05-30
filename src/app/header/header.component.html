@@ -1,59 +1,31 @@
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="#">BookStore</a>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <ul class="navbar-nav navbar-expand-large ">
-        <li class="nav-item">
-          <a routerLink="/login" routerLinkActive="active" class="nav-link active">Log In</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/signup" routerLinkActive="active" class="nav-link active" href="">Sing Up</a>
-        </li>
-      </ul>
-    </nav>     
-    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-link dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Libary</a>
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a routerLink="/about" routerLinkActive="active" href="#" class="dropdown-item" href="#">Categories</a></li>
-              <li><a router-Link="contacts" routerLinkActive="active" class="dropdown-item" href="#">Authors</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Find us</a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a routerLink="/about" routerLinkActive="active" href="#" class="dropdown-item" href="#">About</a></li>
-                <li><a router-Link="contacts" routerLinkActive="active" class="dropdown-item" href="#">Contacts</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-          </li>
-        </ul>
-        <form class="d-flex mt-3" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-success" type="submit">Search</button>
-        </form>
-      </div>
+<ul>
+  <li><a href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li class="custom-dropdown">
+    <a routerLink="Library" class="dropbtn">Library</a>
+    <div class="dropdown-content">
+      <a>Categories</a>
+      <a>Authors</a>
     </div>
+  </li>
+  <div *ngIf="(authService.currentUser$ | async) === null"> 
+    <li style="float:right"><a routerLink="user/register" routerLinkActive="active" href="">Register</a></li>
+    <li style="float:right"><a routerLink="user/login" routerLinkActive="active" href="">Log In</a></li>
   </div>
-</nav>
+  <li *ngIf="authService.currentUser$ | async" style="float:right" class="custom-dropdown">
+    <a href="javascript:void(0)" class="dropbtn">{{(authService.currentUser$ | async)?.email}}</a>
+    <div class="dropdown-content">
+      <a href="#" routerLink="account" routerLinkActive="active">Account Settings</a>
+      <a href="#" type="button" (click)="logout()">Exit</a>
+    </div>
+  </li>
+</ul>
+
+
+
+
+
+
 
 
 

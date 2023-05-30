@@ -1,7 +1,21 @@
 <div>
     <h3>Home Page</h3>
 </div>
-<select>
+<h4>{{(authService.currentUser$ | async)?.email}}</h4>
+<h4>{{(authService.currentUser$ | async)?.token}}</h4>
+<!-- <select>
     <option *ngFor="let item of items"> {{item}}</option>
 </select>
 <p *ngFor="let item of items">{{item}}</p>
+
+<div *ngIf="registerMode" class="container">
+     <div class="row justify-content-center">
+        <app-register (cancelRegister)="cancelRegistryMode($event)"></app-register>
+     </div>
+</div>
+<p>{{loginMode}}</p>
+<div *ngIf="loginMode" class="container">
+    <div class="row justify-content-center">
+       <app-login (cancelLogin)="cancelLoginMode($event)"></app-login>
+    </div>
+</div> -->
